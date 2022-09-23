@@ -1,0 +1,37 @@
+<div class="mt-3 container">
+    <form class="custom-centered" [formGroup]="data" (ngSubmit)="dataFunction()">
+        <div class="form-group">
+            <label>Task Name</label>
+            <input class="mt-3 form-control" type="text" placeholder="Enter Task Name" formControlName="task_name">
+
+            <div class="text-danger" *ngIf="input['task_name']?.errors?.['required']">Task is required</div>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+
+</div>
+
+<div class="mt-5 container">
+    <table class="table table-bordered  table-light">
+
+        <thead>
+            <tr>
+                <th></th>
+                <th>Tsak Name</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of all_data">
+                <td><input type="checkbox" (click)='update(user._id,$event)'  [checked]="user.Is_compalted" ></td>
+                <td class="checkbox"  >{{user.task_name}}</td>
+                <td><button (click)="delete(user._id)">Remove</button></td>
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>
